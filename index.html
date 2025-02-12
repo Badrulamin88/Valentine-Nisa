@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,24 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>❤️ Be My Valentine? ❤️</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffecf0; }
-        h1 { color: #ff3366; }
-        button { 
-            background-color: #ff3366; color: white; border: none; padding: 15px; 
-            font-size: 18px; cursor: pointer; margin: 10px; border-radius: 8px; 
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffecf0;
+            overflow: hidden;
         }
-        button:hover { background-color: #ff6699; }
+        h1 { color: #ff3366; }
+        button {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff6699;
+            transform: scale(1.1);
+        }
+        #response {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff3366;
+            margin-top: 20px;
+        }
+        /* Floating hearts effect */
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            opacity: 0.8;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <h1>Hey Nisa Nurina! 💖</h1>
     <p>I have a very important question for you...</p>
     <h2>Will you be my Valentine? 😍</h2>
+
     <button onclick="showMessage('Yay! You made my day! 🥰❤️')">Yes, of course! 💕</button>
     <button onclick="showMessage('Woohoo! You’re the best! 💘')">Absolutely! 💖</button>
     <button onclick="showMessage('Aww... But I’ll still love you! ❤️')">No 😢</button>
+
+    <div id="response"></div>
+
     <script>
-        function showMessage(message) { alert(message); }
+        function showMessage(message) {
+            document.getElementById("response").innerText = message;
+            createHearts();
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                document.body.appendChild(heart);
+
+                let randomX = Math.random() * window.innerWidth;
+                let randomDuration = Math.random() * 3 + 2;
+
+                heart.style.left = `${randomX}px`;
+                heart.style.animationDuration = `${randomDuration}s`;
+
+                setTimeout(() => heart.remove(), randomDuration * 1000);
+            }
+        }
     </script>
 </body>
 </html>
