@@ -3,13 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ Be My Valentine? ❤️</title>
+    <title>Valentine's Surprise for Nisa Nurina</title>
+    <link rel="stylesheet" href="valentine-vinyl.css">
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #ffecf0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        .record-player {
+            text-align: center;
         }
         h1 { color: #ff3366; }
         button {
@@ -52,11 +68,23 @@
     <p>I have a very important question for you...</p>
     <h2>Will you be my Valentine? 😍</h2>
 
-    <button onclick="showMessage('Yay! You made my day! 🥰❤️')">Yes, of course! 💕</button>
-    <button onclick="showMessage('Woohoo! You’re the best! 💘')">Absolutely! 💖</button>
-    <button onclick="showMessage('Aww... But I’ll still love you! ❤️')">No 😢</button>
+    <div class="container">
+        <!-- Record Player Section -->
+        <div class="record-player">
+            <div id="player-container"></div>
+            <button id="play-button">Play</button>
+            <audio id="love-song" src="little-things.mp3"></audio>
+            <h4>It's the little things!</h4>
+        </div>
 
-    <div id="response"></div>
+        <!-- Valentine's Message Section -->
+        <div>
+            <button onclick="showMessage('Yay! You made my day! 🥰❤️')">Yes, of course! 💕</button>
+            <button onclick="showMessage('Woohoo! You’re the best! 💘')">Absolutely! 💖</button>
+            <button onclick="showMessage('Aww... But I’ll still love you! ❤️')">No 😢</button>
+            <div id="response"></div>
+        </div>
+    </div>
 
     <script>
         function showMessage(message) {
@@ -80,6 +108,16 @@
                 setTimeout(() => heart.remove(), randomDuration * 1000);
             }
         }
+
+        document.getElementById("play-button").addEventListener("click", function() {
+            let song = document.getElementById("love-song");
+            if (song.paused) {
+                song.play();
+            } else {
+                song.pause();
+            }
+        });
     </script>
+    <script src="valentine-vinyl.js"></script>
 </body>
 </html>
